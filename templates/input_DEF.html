@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width<, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+<h1>Forward Player Characteristics</h1>
+<form action="/prediction_DEF" method="post">
+    
+    <label for="league_rank">League_Rank:</label>
+    <input type="float" id="league_rank" name="league_rank" value="1.0"><br>
+    <label for="international_reputation">International_Reputation:</label><br>
+    <input type="int" id="international_reputation" name="international_reputation" value="1"><br><br>
+        
+    <label for="weak_foot">weak_foot:</label><br>
+    <input type="int" id="weak_foot" name="weak_foot" value="1"><br><br>
+     
+    <label for="work_rate">work_rate:</label><br>
+    <input type="object" id="work_rate" name="work_rate" value="x"><br><br>
+    
+    <label for="body_type">Body Type:</label><br>
+    <input type="object" id="body_type" name="body_type" value="y"><br><br>
+    <label for="attacking_heading_accuracy">attacking_heading_accuracy:</label><br>
+    <input type="int" id="attacking_heading_accuracy" name="attacking_heading_accuracy" value="60"><br><br>
+            
+    <label for="attacking_short_passing">attacking_short_passing:</label><br>
+    <input type="int" id="attacking_short_passing" name="attacking_short_passing" value="60"><br><br>
+
+    <label for="skill_ball_control">skill_ball_control:</label><br>
+    <input type="int" id="skill_ball_control" name="skill_ball_control" value="60"><br><br>
+    <label for="movement Reactions">Movement Reactions:</label><br>
+    <input type="int" id="movement_reactions" name="movement_reactions" value="60"><br><br>
+    
+    <label for="mentality_interceptions">mentality_interceptions:</label><br>
+    <input type="int" id="mentality_interceptions" name="mentality_interceptions" value="60"><br><br>
+    
+    <label for="mentality_composure">mentality_composure:</label><br>
+    <input type="int" id="mentality_composure" name="mentality_composure" value="60"><br><br>
+    
+    <label for="defending_sliding_tackle">defending_sliding_tackle:</label><br>
+    <input type="int" id="defending_sliding_tackle" name="defending_sliding_tackle" value="60"><br><br>
+    <label for="passing">passing:</label><br>
+    <input type="float" id="passing" name="passing" value="60.0"><br><br>
+    <label for="defending">defending:</label><br>
+    <input type="float" id="defending" name="defending" value="60.0"><br><br>
+    <label for="physic">physic:</label><br>
+    <input type="float" id="physic" name="physic" value="60.0"><br><br>
+    <label for="dribbling">dribbling:</label><br>
+    <input type="float" id="dribbling" name="dribbling" value="60.0"><br><br>
+          
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
