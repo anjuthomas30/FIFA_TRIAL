@@ -169,7 +169,7 @@ def prediction_MID():
                              int(mentality_composure),float(shooting),
                              float(passing),float(dribbling)]]
       le_mid=pickle.load(open('le_MID.pkl','rb'))
-      to_encode=s.select_dtypes(['object'])
+      to_encode=S.select_dtypes(['object'])
       for col in to_encode.columns:
          S[col]=le_mid.transform(to_encode[col])
          
