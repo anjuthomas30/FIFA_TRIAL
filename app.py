@@ -161,22 +161,22 @@ def prediction_MID():
       passing=request.form['passing']
       
       dribbling=request.form['dribbling']
-      S=[[float(league_rank),int(international_reputation),int(weak_foot),
+      s=[[float(league_rank),int(international_reputation),int(weak_foot),
                              int(skill_moves),(work_rate),(body_type),int(preferred_foot),
                              int(attacking_short_passing),int(skill_dribbling),int(skill_long_passing),
                              int(skill_ball_control),int(movement_reactions),int(power_long_shots),
                              int(mentality_composure),float(shooting),
                              float(passing),float(dribbling)]]
-      le_mid=pickle.load(open('le_MID.pkl','rb'))
-      to_encode=S.select_dtypes(['object'])
-      for col in to_encode.columns:
-         S[col]=le_mid.transform(to_encode[col])
+      work_rate_mid=pickle.load(open('work_rate_mid.pkl','rb'))
+      s[4]=work_rate_mid.transform(s[4])
+      body_type_mid=pickle.load(open('body_type_mid.pkl','rb'))
+      s[5]=body_type_mid.transform(s[5])
          
       model=pickle.load(open('model_MID.pkl','rb'))
 
       rating=model.predict([[1.0,3,3,2,0,2,1,84,69,84,79,87,81,84,73.0,76.0,72.0]])
       print(rating)
-      rating=model.predict(S)
+      rating=model.predict(s)
       
       print(rating)
     return render_template('prediction.html',rating=rating)   
