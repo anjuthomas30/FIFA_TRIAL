@@ -40,15 +40,14 @@ def prediction_GK():
 
 @app.route('/input_FW',methods=['GET','POST'])
 def inputfw():
-   if request.method=='POST':
-      player_position=request.form['player_position']
-      print(player_position)
-      with open("model_FW.pkl","rb") as model_file:
-        model=pickle.load(model_file)
+   if request.method=='GET':
+           
       return render_template('input_FW.html')
 @app.route('/prediction_FW',methods=['GET','POST'])
 def prediction_FW():
     if request.method=='POST':
+      with open("model_FW.pkl","rb") as model_file:
+        model=pickle.load(model_file)
       league_rank=request.form['league_rank']
       print(league_rank)
       international_reputation=request.form['international_reputation']
