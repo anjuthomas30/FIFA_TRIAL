@@ -10,15 +10,14 @@ def player_position():
 
 @app.route('/input_GK',methods=['GET','POST'])
 def inputgk():
-      if request.method=='POST':
-         player_position=request.form['player_position']
-         print(player_position)
-         with open("model_GK.pkl","rb") as model_file:
-            model=pickle.load(model_file)
-      return render_template('input_GK.html')
-@app.route('/prediction_GK',methods=['GET','POST'])
+      if request.method=='GET':
+          
+       return render_template('input_GK.html')
+@app.route('/prediction',methods=['GET','POST'])
 def prediction_GK():
     if request.method=='POST':
+      with open("model_GK.pkl","rb") as model_file:
+            model=pickle.load(model_file)
       league_rank=request.form['league_rank']
       print(league_rank)
       international_reputation=request.form['international_reputation']
@@ -87,18 +86,16 @@ def prediction_FW():
 
 @app.route('/input_DEF',methods=['GET','POST'])
 def inputdef():
-   if request.method=='POST':
-      player_position=request.form['player_position']
-      print(player_position)
-      if player_position=='DEF':
-         with open("model_DEF.pkl","rb") as model_file:
-            model=pickle.load(model_file)
-   return render_template('input_DEF.html')
+   if request.method=='GET':
+       
+    return render_template('input_DEF.html')
 
 
 @app.route('/prediction_DEF',methods=['GET','POST'])
 def prediction_DEF():
     if request.method=='POST':
+      with open("model_DEF.pkl","rb") as model_file:
+            model=pickle.load(model_file)
       league_rank=request.form['league_rank']
       print(league_rank)
       international_reputation=request.form['international_reputation']
@@ -134,17 +131,15 @@ def prediction_DEF():
    
 @app.route('/input_MID',methods=['GET','POST'])
 def inputmid():
-   if request.method=='POST':
-      player_position=request.form['player_position']
-      print(player_position)
-      with open("model_MID.pkl","rb") as model_file:
-        model=pickle.load(model_file)
-      with open("le_MID.pkl","rb") as model_file:
-        le_mid=pickle.load(model_file)
+   if request.method=='GET':      
       return render_template('input_MID.html')
-@app.route('/prediction_MID',methods=['GET','POST'])
+@app.route('/prediction',methods=['GET','POST'])
 def prediction_MID():
     if request.method=='POST':
+      with open("model_MID.pkl","rb") as model_file:
+        model=pickle.load(model_file)
+      with open("le_MID.pkl","rb") as f:
+        le_mid=pickle.load(f)
       league_rank=request.form['league_rank']
       print(league_rank)
       international_reputation=request.form['international_reputation']
@@ -174,8 +169,9 @@ def prediction_MID():
                              int(mentality_composure),float(shooting),
                              float(passing),float(dribbling)]]
       le_mid=pickle.load(open('le_MID.pkl','rb'))
-      for i in S:
-         i=le_mid.fit(i)
+      to_encode=s.select_dtypes(['object'])
+      for col in to_encode.columns:
+         S[col]=le_mid.transform(to_encode[col])
          
       model=pickle.load(open('model_MID.pkl','rb'))
 
@@ -184,7 +180,7 @@ def prediction_MID():
       rating=model.predict(S)
       
       print(rating)
-    return render_template('prediction_MID.html',rating=rating)   
+    return render_template('prediction.html',rating=rating)   
 
 
 
